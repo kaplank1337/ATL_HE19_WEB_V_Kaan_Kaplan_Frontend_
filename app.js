@@ -1,6 +1,7 @@
 "use strict"
 
-const { default: axios } = require("axios");
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     anmeldenButton.addEventListener("click", () => {
-         const fieldEingabeUsername = document.getElementById("fieldEingabeUsername").value;
+        const fieldEingabeUsername = document.getElementById("fieldEingabeUsername").value;
         const fieldEingabePassword = document.getElementById("fieldEingabePassword").value;
      
        
@@ -25,10 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(function (response){
             if(response.status == 200){
-                window.location.href = "secondpage.html";
-            }
-
-             
+                window.location.href = "secondpage.html";    
+            }             
         })
         .catch(function (error){
             console.log(error);
