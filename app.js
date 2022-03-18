@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(function (response){
             if(response.status == 200){
-                let zweiteSeite = "secondpage.html";
-                window.location.href = zweiteSeite;
+                window.location.href = "secondpage.html";
             }
 
              
