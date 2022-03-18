@@ -1,0 +1,23 @@
+{
+  "name": "frontend_avms",
+  "version": "1.0.0",
+  "description": "Diplomarbeit Kaan Kaplan HF ICT HE19 - AVMS",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaplank1337/diplomarbeit_website.git"
+  },
+  "author": "Kaan Kaplan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaplank1337/diplomarbeit_website/issues"
+  },
+  "homepage": "https://github.com/kaplank1337/diplomarbeit_website#readme",
+  "dependencies": {
+    "axios": "^0.26.0"
+  }
+}
