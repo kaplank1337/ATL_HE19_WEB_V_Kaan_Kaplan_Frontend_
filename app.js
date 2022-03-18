@@ -1,53 +1,44 @@
 "use strict"
 
+const { default: axios } = require("axios");
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    
-    const buttonActivate = document.getElementById("activate");
-    const buttonDeactivate = document.getElementById("deactivate");
-    
+   
+    const anmeldenButton = document.getElementById("anmelden");
 
     
-    buttonActivate.addEventListener("click", () => {
-        const fieldEingabeHostname = document.getElementById("fieldEingabeHostname").value;
+    anmeldenButton.addEventListener("click", () => {
+         const fieldEingabeUsername = document.getElementById("fieldEingabeUsername").value;
+        const fieldEingabePassword = document.getElementById("fieldEingabePassword").value;
+     
        
         axios({
             method:'post',
-            url:'http://localhost:8080/hostname/activate',
+            url:'http://localhost:3000/login',
             data: {
-                hostname: fieldEingabeHostname
+                username: fieldEingabeUsername,
+                password: fieldEingabePassword
+                
             }
         })
         .then(function (response){
-            alert("Host " + fieldEingabeHostname + " wurde aktiviert!");
+            if(response.status == 200){
+                let zweiteSeite = "secondpage.html";
+                window.location.href = zweiteSeite;
+            }
+
+             
         })
         .catch(function (error){
             console.log(error);
         })
     });
+    
 
-     buttonDeactivate.addEventListener("click", () => {
-        const fieldEingabeHostname = document.getElementById("fieldEingabeHostname").value;
-        
 
-        axios({
-            method:'post',
-            url:'http://localhost:8080/hostname/deactivate',
-            data: {
-                hostname: fieldEingabeHostname
-            }
-        })
-        .then(function (response){
-            alert("Host " + fieldEingabeHostname + " wurde deaktiviert!");
-        })
-        .catch(function (error){
-            console.log(error);
-        })
-    });
 
-     
-    // Kopie an mich (Absender) einrichten.
 
 
 })
