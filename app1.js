@@ -1,5 +1,9 @@
 "use strict"
 
+const { default: axios } = require("axios");
+
+const createUserButton = document.getElementById("benutzerErstellen");
+
 
 
 window.onload = function() {
@@ -15,14 +19,9 @@ window.onload = function() {
                 password : resp.data[i].password
             })
 
-        }       
-    })
-
-   
-   
-    
-setTimeout(function() {
-    let table = document.getElementById('myTable');
+        } 
+        
+        let table = document.getElementById('myTable');
 
 
     for (let i = 0; i < userMapping.length; i++){
@@ -36,10 +35,38 @@ setTimeout(function() {
         `
 
         table.innerHTML += row;
-    }
-},500);
-  
-   
-   
-
+    }     
+    })
 }
+
+
+
+createUserButton.addEventListener("click", ()  => {
+    let fieldEingabeID = document.getElementById(userID).value;
+    let fieldEingabeUserName = document.getElementById(userName).value;
+    let fieldEingabePassword = document.getElementById(userPassword).value;
+
+
+
+     axios({
+            method:'post',
+            url:'http://localhost:3000/createUserser',
+            data: {
+                userID : fieldEingabeID,
+                userName : fieldEingabeUsername,
+                password: fieldEingabePassword
+                
+            }
+        })
+        .then(function (response){
+            if(response.status == 200){
+                alert("Benutzer wurde erstellt!");    
+            }             
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+})
+
+
