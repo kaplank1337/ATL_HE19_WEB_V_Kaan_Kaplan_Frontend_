@@ -130,8 +130,14 @@ updateUserButton.addEventListener("click", () => {
         {
             username: inputUserName,
             password: inputUserPassword
+        }).then(function (response){
+            alert("Benutzer wurde via PUT upgedated!");
+            getAllUsers();
+            location.reload();
         })
+
     }
+    })
 
     
 
@@ -141,4 +147,4 @@ updateUserButton.addEventListener("click", () => {
     
 })    
 
-})    
+  
