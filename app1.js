@@ -2,6 +2,9 @@
 
 
 
+
+
+
 function getAllUsers(){
 
      let userMapping = [];
@@ -47,6 +50,7 @@ window.onload = function() {
 document.addEventListener("DOMContentLoaded", () => {
     const createUserButton = document.getElementById("buttonErstellen");
     const deleteUserButton = document.getElementById("buttonLoeschen");
+    const updateUserButton = document.getElementById("buttonUpdate");
 
     createUserButton.addEventListener("click", ()  => {
     let inputID = document.getElementById("userID").value;
@@ -80,18 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 deleteUserButton.addEventListener("click", () => {
     let inputID = document.getElementById("userID").value;
-    let inputUserName = document.getElementById("userName").value;
-    let inputUserPassword = document.getElementById("userPassword").value;
     
 
-    axios.delete("http://localhost:3000/deleteUser",  {
-        data: {
-            id: inputID,
-            username: inputUserName,
-            password: inputUserPassword
-        }
-    }).then(function (response){
+    axios.delete("http://localhost:3000/deleteUser/" + inputID).then(function (response){
         console.log(response);
+        location.reload();
     
     })
     .catch(function(error){
@@ -99,5 +96,49 @@ deleteUserButton.addEventListener("click", () => {
     })
     
     })
+
+
+updateUserButton.addEventListener("click", () => {
+
+    let inputID = document.getElementById("userID").value;
+    let inputUserName = document.getElementById("userName").value;
+    let inputUserPassword = document.getElementById("userPassword").value;
+
+    console.log("UPDATE BUTTON WURDE ANGEKLICKT!")
+
+
+    if(inputUserName == "" || inputUserPassword == ""){
+        console.log("Username oder PW sind leer")
+        if(inputUserName == ""){
+        axios.patch("http://localhost:3000/updateUserPatch/" + inputID, 
+        {
+            password: inputUserPassword
+        })}
+    }
+
+    if(inputUserName == "" || inputUserPassword == ""){
+        if(inputUserPassword == ""){
+            axios.patch("http://localhost:3000/updateUserPatch/" + inputID,
+            {
+                username: inputUserName
+            })
+        }
+    }
+
+    if(inputUserName != "" && inputUserPassword != ""){
+        axios.put("http://localhost:3000/updateUserPut/"  + inputID,
+        {
+            username: inputUserName,
+            password: inputUserPassword
+        })
+    }
+
+    
+
+
+    //PATCH EINZELNE EIGENSCHAFTEN
+    //PUT Ganze Resource
+    
+})    
 
 })    
