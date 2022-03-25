@@ -1,4 +1,9 @@
+
+
 "use strict"
+
+
+
 
 
 
@@ -11,6 +16,9 @@
  */
 function getAllUsers(){
 
+
+   
+    
      let userMapping = [];   
     axios.get('http://localhost:3000/getAllUsers').then(resp => {
         
@@ -36,7 +44,12 @@ function getAllUsers(){
        </tr
         `
         table.innerHTML += row;
-    }     
+    }   
+    },
+    {
+        headers : {
+            'Authorization': 'Baerer' + receivedTokenFromLogin
+        }
     })
 }
 
