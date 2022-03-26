@@ -3,7 +3,7 @@
 "use strict"
 
 
-
+let receivedTokenFromLogin;
 
 
 
@@ -17,10 +17,17 @@
 function getAllUsers(){
 
 
-   
+   receivedTokenFromLogin = window.localStorage.getItem('jwt-token');
     
-     let userMapping = [];   
-    axios.get('http://localhost:3000/getAllUsers').then(resp => {
+     let userMapping = []; 
+     console.log("GET REQUEST!")
+     
+    axios.get('http://localhost:3000/getAllUsers', {
+            headers : {
+                'Authorization': 'baerer ' + receivedTokenFromLogin
+            }
+        }).then(resp => {
+            console.log("then");
         
         for(let i = 0; i<resp.data.length; i++){
            
@@ -45,13 +52,9 @@ function getAllUsers(){
         `
         table.innerHTML += row;
     }   
-    },
-    {
-        headers : {
-            'Authorization': 'Baerer' + receivedTokenFromLogin
-        }
-    })
-}
+})}
+    
+
 
 /**
  * userIDValidation
@@ -140,8 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .then(function (response){
-            console.log("THEN")
-            console.log(response);
             if(response.status == 200){
                 alert("Benutzer wurde erstellt!");    
                 location.reload();                
@@ -237,5 +238,3 @@ updateUserButton.addEventListener("click", () => {
     //PUT Ganze Resource
     
 })    
-
-  

@@ -27,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(function (response){
             if(response.status == 200){
-                let jwttoken =  sessionStorage.setItem("jwt-token",response.data.token);
-                //receivedTokenFromLogin = response.data.token;
+                window.localStorage.setItem('jwt-token',response.data.token);           
                 window.location.href = "secondpage.html";    
             }             
         })
