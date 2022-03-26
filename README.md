@@ -4,7 +4,8 @@ ATL_HE19_WEB_V_Kaan_Kaplan_Frontend_
 
 <h1> ATL Anleitung wie das Frontend funktioniert </h1>
 
-<h3>Hinweis: Das Backend muss bereits laufen, damit die Anmeldung funktioniert</h3>
+<h3>Hinweis: Das Backend muss bereits laufen, damit die Anmeldung funktioniert<br>
+Sämtliche REST Requests wurden via Axios durchgeführt</h3>
 
 <h2>Kurze Projekt Beschreibung</h2>
 <p>Ich als Projekt eine Benutzerverwaltung programmiert bei dem sämtliche CRUD Operationen möglich sind.<br>
