@@ -36,6 +36,8 @@ SecondPage.html ist die zweite Website bei der es möglich ist Benutzer zu erste
   
   
   
+ <h2>Es gibt keine Lizenz Informationen</h2>
+  
 
 
 
