@@ -25,7 +25,7 @@ SecondPage.html ist die zweite Website bei der es möglich ist Benutzer zu erste
 <p> Die Anmeldung kann mit zwei Benutzern erfolgen, Kaan oder Test, bei denne der Benutzername und Passwort identisch ist.
   
  <h3>secondPage.html</h3>
- <h4>Erstellenh</h4>
+ <h4>Erstellen</h4>
  <p>Um Benutzer zu erstellen, muss die ID, der Benutzername und das Passwort gesetzt werden.<>p>
   
   <h4>Löschen</h4>
