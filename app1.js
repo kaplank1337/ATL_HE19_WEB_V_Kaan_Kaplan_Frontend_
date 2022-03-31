@@ -3,11 +3,12 @@
 "use strict"
 
 
+
 let receivedTokenFromLogin;
 
 
 
-
+axios.defaults.headers.common['Authorization'] = 'Baerer ' + window.localStorage.getItem('jwt-token');
 
 /**
  * getAllUsers
@@ -20,14 +21,14 @@ function getAllUsers(){
    receivedTokenFromLogin = window.localStorage.getItem('jwt-token');
     
      let userMapping = []; 
-     console.log("GET REQUEST!")
+    
      
     axios.get('http://localhost:3000/getAllUsers', {
             headers : {
                 'Authorization': 'baerer ' + receivedTokenFromLogin
             }
         }).then(resp => {
-            console.log("then");
+          
         
         for(let i = 0; i<resp.data.length; i++){
            
@@ -135,6 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
      axios({
             method:'post',
             url:'http://localhost:3000/createUser',
+             headers : {
+                'Authorization': 'baerer ' + receivedTokenFromLogin
+            },
             data: {
                 userID : inputID,
                 userName : inputUserName,
@@ -161,7 +165,12 @@ deleteUserButton.addEventListener("click", () => {
         return alert("ID hat nicht das richtige Format! (NUR ZAHLEN ERLAUBT)");
     }    
 
-    axios.delete("http://localhost:3000/deleteUser/" + inputID).then(function (response){
+    axios.delete("http://localhost:3000/deleteUser/" + inputID,{
+     headers : {
+                'Authorization': 'baerer ' + receivedTokenFromLogin
+            }})
+    
+    .then(function (response){
         console.log(response);
         location.reload();
     
@@ -184,6 +193,7 @@ updateUserButton.addEventListener("click", () => {
 
     if(inputUserName == "" || inputUserPassword == ""){        
         if(inputUserName == ""){
+            console.log("PATCH ohne Benutzernamen");
         axios.patch("http://localhost:3000/updateUserPatch/" + inputID, 
         {
             password: inputUserPassword
@@ -200,6 +210,8 @@ updateUserButton.addEventListener("click", () => {
             if(!userNameValidation(inputUserName)){
                 return alert("Username hat nicht das richtige Format! (Erster Buchstabe gross, rest klein!)");
             }
+
+            console.log("PATCH ohne PW");
 
             axios.patch("http://localhost:3000/updateUserPatch/" + inputID,
             {
